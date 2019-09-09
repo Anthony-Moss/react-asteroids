@@ -1,7 +1,7 @@
 import React from 'react';
 import { Stage, Layer, Rect, Text } from 'react-konva';
-import Gamescreen from './components/background/Background';
-import SpaceShip from './components/PlayerShip/PlayerShip';
+import Gamescreen from './components/background/GameScreen';
+import SpaceShip from './components/playerShip/PlayerShip';
 
 function App() {
   return (
