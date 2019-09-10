@@ -11,8 +11,15 @@ class SpaceShip extends React.Component {
             startX: 500,
             startY: 400,
             angle: 50,
-            rotation: 65
+            rotation: 65,
+            currentX: null,
+            currentY: null
         }
+    }
+
+    static getDerivedStateFromProps(props, state) {
+        let keyValue = props.keyPress;
+        let rotation = state.rotation;
     }
 
     render() {
@@ -29,6 +36,9 @@ class SpaceShip extends React.Component {
                 shadowColor= {'yellow'}
                 shadowBlur={7}
                 ref={node => this.wedge = node}
+                tabIndex='0' onKeyDown={(event) => {
+                    console.log("is this on?")
+                    }}
             />
         )
     }
