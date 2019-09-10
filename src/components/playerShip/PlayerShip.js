@@ -1,24 +1,34 @@
 import React from 'react';
-import { RegularPolygon, } from 'react-konva'
+import { RegularPolygon, Wedge } from 'react-konva'
 
 
 class SpaceShip extends React.Component {
     constructor(props) {
         super(props)
     
-    this.state={
-        color: 'orange'
-    }
+        this.state={
+            color: 'purple',
+            startX: 500,
+            startY: 400,
+            angle: 50,
+            rotation: 65
+        }
     }
 
     render() {
         return (
-            <RegularPolygon
-                x={200}
-                y={300}
-                sides={3}
-                radius={20}
+            <Wedge
+                x={600}
+                y={400}
+                radius={35}
                 fill={this.state.color}
+                stroke={'grey'}
+                strokeWidth={1}
+                angle={50}
+                rotation={65}
+                shadowColor= {'yellow'}
+                shadowBlur={7}
+                ref={node => this.wedge = node}
             />
         )
     }
