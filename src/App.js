@@ -8,26 +8,41 @@ class App extends React.Component {
     super(props) 
 
     this.state = {
+      screen: {
+        width: window.innerWidth,
+        height: window.innerHeight,
+        ratio: window.devicePixelRatio || 1,
+      },
       keys: {
         left: 0,
         right: 0,
         up: 0,
-        down: 0,
         space: 0
-      }
+      },
+      spaceship: [
+        {}
+      ]
     }
   }
 
-  handleShipMovement(value, e) {
+  handleKeyPress(value, e) {
     let keys = this.state.keys;
-    if (e.keyCode === 37 || e.keyCode === 65)
-      keys.left  = value;
-    if (e.keyCode === 39 || e.keyCode === 68) 
-      keys.right = value;
-    if (e.keyCode === 38 || e.keyCode === 87) 
-      keys.up = value;
-    if (e.keyCode === 32) 
-      keys.space = value;
+    switch (e.keyCode) {
+      case 37: keys.left = value;
+        break;
+      case 65: keys.left = value;
+        break;
+      case 39: keys.right = value
+        break;
+      case 68: keys.right = value;
+        break;
+      case 38: keys.up = value;
+        break;
+      case 87: keys.up = value;
+        break;
+      case 32: keys.space = value;
+        break;
+    }
 
     this.setState({
       keys
@@ -35,19 +50,32 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    window.addEventListener('keyup', this.handleShipMovement.bind(this, false));
-    window.addEventListener('keydown', this.handleShipMovement.bind(this, true))
+    window.addEventListener('keyup', this.handleKeyPress.bind(this, false));
+    window.addEventListener('keydown', this.handleKeyPress.bind(this, true))
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('keyup', this.handleKeys);
+    window.removeEventListener('keydown', this.handleKeys);
   }
 
   render() {
+    let keyCounter = 0
+    let spaceship = this.state.spaceship.map(ship => {
+      return <SpaceShip key={keyCounter} x={600} y={400} width={this.state.screen.width} height={this.state.screen.height} rotation={65} speed={8} keyPress={this.state.keys} ref={node => {
+        this.spaceShipNode = node;
+      }}/>
+
+
+    })
     return (
       <div tabIndex='0' onKeyDown={(event) => {
-        // console.log(event.key)
+        console.log(event.key)
       }}>
       <Stage width={window.innerWidth} height={window.innerHeight}>
         <Layer>
           <Gamescreen />
-          <SpaceShip />
+          {spaceship}
         </Layer>
       </Stage>
       </div>
