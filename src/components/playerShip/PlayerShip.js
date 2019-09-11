@@ -25,103 +25,44 @@ class SpaceShip extends React.Component {
 
     handleKeyPress(value, e) {
         let keys = this.state.keys;
-        let x = this.state.x - Math.sin(-(this.state.rotation - 65)*Math.PI/180) * this.state.speed;
-        let y = this.state.y - Math.cos(-(this.state.rotation - 65)*Math.PI/180) * this.state.speed;
+        let rotation = this.state.rotation
+        let x = this.state.x
+        let y = this.state.y
+        console.log(e)
+
         switch (e.keyCode) {
             // when left ship rotates
-            case 37: this.setState({
-                rotation: this.state.rotation - 6
-            });
-                break;
-            case 65: keys.left = value;
+            case 37:
+                rotation -= 9
                 break;
             // when right ship rotates
-            case 39: this.setState({
-                rotation: this.state.rotation + 6
-            });
-                break;
-            case 68: keys.right = value;
+            case 39:
+                rotation += 9
                 break;
             // when up ship accelerates
-            case 38: this.setState({
-                x,
-                y
-            });
-            break;
-            case 87: keys.up = value;
+            case 38: 
+                x -= Math.sin(-(rotation - 65)*Math.PI/180) * this.state.speed;
+                y -= Math.cos(-(rotation - 65)*Math.PI/180) * this.state.speed;
                 break;
             // when space ship fires projectile
             case 32: keys.space = value;
                 break;
             default:
-                this.setState(...this.state)
                 break;
         }
     
         this.setState({
-            keys
+            x,
+            y,
+            rotation
         });
     }
 
     componentDidMount() {
-        // window.addEventListener('keyup', this.handleKeyPress.bind(this, false));
         window.addEventListener('keydown', this.handleKeyPress.bind(this, true))
+        // window.addEventListener('keyup', this.handleKeyPress.bind(this, false))
     }
 
-    // static getDerivedStateFromProps(props, state) {
-    //     let keyValue = props.keyPress;
-    //     let rotation = state.rotation;
-    //     let speed = state.speed
-
-    //     let x = state.x - Math.sin(-(rotation - 65)*Math.PI/180) * speed;
-    //     let y = state.y - Math.cos(-(rotation - 65)*Math.PI/180) * speed;
-    //     const change = {
-    //         x: state.x,
-    //         y: state.y,
-    //         rotation
-    //     }
-
-
-    //     if (keyValue.left) {
-    //         let x = state.x - Math.sin(-(state.rotation - 65)*Math.PI/180) * state.speed;
-    //         let y = state.y - Math.cos(-(state.rotation - 65)*Math.PI/180) * state.speed;
-    //         if (keyValue.up) {
-    //             return {rotation: rotation - 7, x: x, y: y}
-    //     } else {
-    //         return {rotation: rotation - 7}
-    //     }
-    // }
-    
-    // else if (keyValue.right) {
-    //     let x = state.x - Math.sin(-(state.rotation - 65)*Math.PI/180) * state.speed;
-    //     let y = state.y - Math.cos(-(state.rotation - 65)*Math.PI/180) * state.speed;
-    //     if (keyValue.up) {
-    //     return {rotation: rotation + 7, x: x, y: y}
-    //     } else {
-    //         return {rotation: rotation + 7}
-    //     }
-    // }
-    
-    // // console.log(keyValue.up);
-    // else if (keyValue.up) {
-    //     if (keyValue.left) {
-    //     let x = state.x - Math.sin(-(state.rotation - 65)*Math.PI/180) * state.speed;
-    //     let y = state.y - Math.cos(-(state.rotation - 65)*Math.PI/180) * state.speed;
-    //         // let rotation = {rotation: rotation - 7}
-    //         return { x: x, y: y, rotation: rotation - 7}
-    //     } else {
-    //         let x = state.x - Math.sin(-(state.rotation - 65)*Math.PI/180) * state.speed;
-    //         let y = state.y - Math.cos(-(state.rotation - 65)*Math.PI/180) * state.speed;
-    //         return {
-    //             x,
-    //             y
-    //         }
-    //     }; 
-    // } else {
-    //     return {state}
-    // }
-        
-    // }
 
     render() {
         return (
@@ -142,14 +83,6 @@ class SpaceShip extends React.Component {
                     }}
             />
         )
-        
-        
-    }
-    handleRotation = () => {
-        let rotation = this.state.rotation
-
-        this.setState({
-        })
     }
 }
 
@@ -180,4 +113,43 @@ export default SpaceShip
         //     change.x = x
         //     change.y = y
         //     return change
+        // }
+
+
+
+        // let keys = this.state.keys;
+        // let rotation = this.state.rotation
+        // let x = this.state.x
+        // let y = this.state.y
+        // switch (e.keyCode) {
+        //     // when left ship rotates
+        //     case 37:
+        //         rotation = this.state.rotation - 6
+        //         break;
+        //     case 65: keys.left = value;
+        //         break;
+        //     // when right ship rotates
+        //     case 39: this.setState({
+        //         rotation: this.state.rotation + 6
+        //     });
+        //         break;
+        //     case 68: keys.right = value;
+        //         break;
+        //     // when up ship accelerates
+        //     case 38: 
+        //     x = this.state.x - Math.sin(-(this.state.rotation - 65)*Math.PI/180) * this.state.speed;
+        //     y = this.state.y - Math.cos(-(this.state.rotation - 65)*Math.PI/180) * this.state.speed;
+        //     //     this.setState({
+        //     //     x,
+        //     //     y
+        //     // });
+        //     break;
+        //     case 87: keys.up = value;
+        //         break;
+        //     // when space ship fires projectile
+        //     case 32: keys.space = value;
+        //         break;
+        //     default:
+        //         this.setState(...this.state)
+        //         break;
         // }

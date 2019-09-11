@@ -1,5 +1,5 @@
 import React from 'react';
-import { Stage, Layer, Rect, Text } from 'react-konva';
+import { Stage, Layer } from 'react-konva';
 import Gamescreen from './components/gameScreen/GameScreen';
 import SpaceShip from './components/playerShip/PlayerShip';
 
@@ -13,42 +13,11 @@ class App extends React.Component {
         height: window.innerHeight,
         ratio: window.devicePixelRatio || 1,
       },
-      keys: {
-        left: 0,
-        right: 0,
-        up: 0,
-        space: 0
-      },
       spaceship: [
         {}
       ]
     }
   }
-
-  // handleKeyPress(value, e) {
-  //   let keys = this.state.keys;
-  //   switch (e.keyCode) {
-  //     case 37: keys.left = value;
-  //       break;
-  //     case 65: keys.left = value;
-  //       break;
-  //     case 39: keys.right = value
-  //       break;
-  //     case 68: keys.right = value;
-  //       break;
-  //     case 38: keys.up = value;
-  //       break;
-  //     case 87: keys.up = value;
-  //       break;
-  //     case 32: keys.space = value;
-  //       break;
-  //   }
-
-  //   this.setState({
-  //     keys
-  //   });
-  // }
-
 
   render() {
     let spaceship = this.state.spaceship.map((ship, i) => {
