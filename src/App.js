@@ -25,44 +25,34 @@ class App extends React.Component {
     }
   }
 
-  handleKeyPress(value, e) {
-    let keys = this.state.keys;
-    switch (e.keyCode) {
-      case 37: keys.left = value;
-        break;
-      case 65: keys.left = value;
-        break;
-      case 39: keys.right = value
-        break;
-      case 68: keys.right = value;
-        break;
-      case 38: keys.up = value;
-        break;
-      case 87: keys.up = value;
-        break;
-      case 32: keys.space = value;
-        break;
-    }
+  // handleKeyPress(value, e) {
+  //   let keys = this.state.keys;
+  //   switch (e.keyCode) {
+  //     case 37: keys.left = value;
+  //       break;
+  //     case 65: keys.left = value;
+  //       break;
+  //     case 39: keys.right = value
+  //       break;
+  //     case 68: keys.right = value;
+  //       break;
+  //     case 38: keys.up = value;
+  //       break;
+  //     case 87: keys.up = value;
+  //       break;
+  //     case 32: keys.space = value;
+  //       break;
+  //   }
 
-    this.setState({
-      keys
-    });
-  }
+  //   this.setState({
+  //     keys
+  //   });
+  // }
 
-  componentDidMount() {
-    window.addEventListener('keyup', this.handleKeyPress.bind(this, false));
-    window.addEventListener('keydown', this.handleKeyPress.bind(this, true))
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('keyup', this.handleKeys);
-    window.removeEventListener('keydown', this.handleKeys);
-  }
 
   render() {
-    let keyCounter = 0
-    let spaceship = this.state.spaceship.map(ship => {
-      return <SpaceShip key={keyCounter} x={600} y={400} width={this.state.screen.width} height={this.state.screen.height} rotation={65} speed={8} keyPress={this.state.keys} ref={node => {
+    let spaceship = this.state.spaceship.map((ship, i) => {
+      return <SpaceShip key={i} x={600} y={400} width={this.state.screen.width} height={this.state.screen.height} rotation={65} speed={8} keyPress={this.state.keys} ref={node => {
         this.spaceShipNode = node;
       }}/>
 
