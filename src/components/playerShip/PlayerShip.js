@@ -12,7 +12,7 @@ class SpaceShip extends React.Component {
             y: props.y,
             angle: 50,
             rotation: props.rotation,
-            speed: 8,
+            speed: 9.5,
             keys: {
                 left: 0,
                 right: 0,
@@ -33,11 +33,11 @@ class SpaceShip extends React.Component {
         switch (e.keyCode) {
             // when left ship rotates
             case 37:
-                rotation -= 9
+                rotation -= 10
                 break;
             // when right ship rotates
             case 39:
-                rotation += 9
+                rotation += 10
                 break;
             // when up ship accelerates
             case 38: 
@@ -60,7 +60,6 @@ class SpaceShip extends React.Component {
 
     componentDidMount() {
         window.addEventListener('keydown', this.handleKeyPress.bind(this, true))
-        // window.addEventListener('keyup', this.handleKeyPress.bind(this, false))
     }
 
 
