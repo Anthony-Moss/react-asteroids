@@ -6,8 +6,16 @@ class Asteroids extends React.Component {
     constructor(props) {
         super(props)
 
+        let getSides = () => {
+            let min = 5;
+            const max = 10;
+            const sides = Math.floor(Math.random() * (max - min + 1) + min)
+            return sides
+        }
+
+
         this.state = {
-            numOfSides: 10,
+            numOfSides: getSides(),
             radius: 15,
             x: props.x,
             y: props.y,
@@ -32,7 +40,7 @@ class Asteroids extends React.Component {
             <RegularPolygon
             x={this.state.x}
             y={this.state.y}
-            sides={5}
+            sides={this.state.numOfSides}
             radius={20}
             stroke="white"
         />
