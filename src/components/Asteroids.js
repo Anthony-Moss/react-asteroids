@@ -1,6 +1,6 @@
 import React from 'react';
 import { RegularPolygon, Line } from 'react-konva';
-import { render } from 'react-dom';
+import Konva from 'konva';
 
 class Asteroids extends React.Component {
     constructor(props) {
@@ -13,10 +13,16 @@ class Asteroids extends React.Component {
             return sides
         }
 
+        let getRadius = () => {
+            let min = 10;
+            const max = 75;
+            const radius = Math.floor(Math.random() * (max - min + 1) + min)
+            return radius
+        }
 
         this.state = {
             numOfSides: getSides(),
-            radius: 15,
+            radius: getRadius(),
             x: props.x,
             y: props.y,
             speed: 1
@@ -24,16 +30,15 @@ class Asteroids extends React.Component {
     }
 
     
-    // componentDidMount() {
-    //     console.log('am i on?')
-    //     let angularSpeed = 60;
-    //     this.anim = new Konva.Animation(frame => {
-    //     let angleDiff = (frame.timeDiff * angularSpeed) / 1000;
-    //     this.asteroid.rotate(angleDiff);
-    //     this.asteroid.cache();
-    //     }, this.asteroid.getLayer());
-    //     this.anim.start();
-    // }
+    componentDidMount() {
+        let angularSpeed = 60;
+        this.anim = new Konva.Animation(frame => {
+        let angleDiff = (frame.timeDiff * angularSpeed) / 1000;
+        this.asteroid.rotate(angleDiff);
+        this.asteroid.cache();
+        }, this.asteroid.getLayer());
+        this.anim.start();
+    }
 
     render () {
         return (
@@ -41,8 +46,9 @@ class Asteroids extends React.Component {
             x={this.state.x}
             y={this.state.y}
             sides={this.state.numOfSides}
-            radius={20}
+            radius={this.state.radius}
             stroke="white"
+            ref={node => this.asteroid = node}
         />
         )
     }
