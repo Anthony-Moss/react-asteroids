@@ -16,6 +16,20 @@ class App extends React.Component {
       },
       spaceship: [
         {}
+      ],
+      asteroids: [
+        {
+          x: 750,
+          y: 250
+        },
+        {
+          x: 300,
+          y: 750
+        },
+        {
+          x: 400,
+          y: 275
+        }
       ]
     }
   }
@@ -27,6 +41,10 @@ class App extends React.Component {
       }}/>
     })
 
+    let asteroids = this.state.asteroids.map((asteroid, i) => {
+      return <Astroids key={i} x={asteroid.x} y={asteroid.y} />
+    })
+
     return (
       <div tabIndex='0' onKeyDown={(event) => {
         console.log(event.key)
@@ -34,7 +52,7 @@ class App extends React.Component {
       <Stage width={window.innerWidth} height={window.innerHeight}>
         <Layer>
           <Gamescreen />
-          <Astroids x={300} y={300} />
+          {asteroids}
           {spaceship}
         </Layer>
       </Stage>
