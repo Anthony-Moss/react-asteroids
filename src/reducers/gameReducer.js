@@ -12,16 +12,9 @@ const initialState = {
 const gameReducer = (state=initialState, action) => {
     switch(action.type) {
         case "START_GAME":
-
             return {
                 ...state,
-                asteroids: [{
-                    numOfSides: getSides(),
-                    radius: getRadius(),
-                    x: getX(),
-                    y: getY(),
-                    speed: 1
-                }]
+                asteroids: action.payload.asteroids
             }
         default:
             return state
