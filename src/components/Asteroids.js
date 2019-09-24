@@ -36,9 +36,9 @@ class Asteroids extends React.Component {
 }
 
 function mapStateToProps(state) {
-    console.log(state)
+    // console.log(state)
     return {
-        ...state.asteroids
+        ...state.game.asteroids
     }
 }
 
