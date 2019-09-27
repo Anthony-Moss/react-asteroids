@@ -1,11 +1,44 @@
 import React from 'react';
-import { Wedge } from 'react-konva'
+import { Wedge } from 'react-konva';
+import { connect } from 'react-redux';
 
 
 class SpaceShip extends React.Component {
     constructor(props) {
         super(props)
     }
+
+
+    render() {
+        return (
+            <Wedge
+                x={this.props.x}
+                y={this.props.y}
+                radius={35}
+                fill={this.props.color}
+                stroke={'grey'}
+                strokeWidth={1}
+                angle={this.props.angle}
+                rotation={this.props.rotation}
+                shadowColor= {'yellow'}
+                shadowBlur={7}
+                ref={node => this.wedge = node}
+            />
+        )
+        
+    }
+}
+
+function mapStateToProps(state) {
+    return {
+        ...state.ship
+    }
+}
+
+export default connect(mapStateToProps)(SpaceShip)
+
+
+
 
     // handleKeyPress(value, e) {
     //     let keys = this.state.keys;
@@ -45,33 +78,6 @@ class SpaceShip extends React.Component {
     // componentDidMount() {
     //     window.addEventListener('keydown', this.handleKeyPress.bind(this, true))
     // }
-
-
-    render() {
-        return (
-            <Wedge
-                x={this.props.x}
-                y={this.props.y}
-                radius={35}
-                fill={this.props.color}
-                stroke={'grey'}
-                strokeWidth={1}
-                angle={this.props.angle}
-                rotation={this.props.rotation}
-                shadowColor= {'yellow'}
-                shadowBlur={7}
-                ref={node => this.wedge = node}
-            />
-        )
-    }
-}
-
-export default SpaceShip
-
-
-
-
-
 
 
         // switch (keyValue) {
