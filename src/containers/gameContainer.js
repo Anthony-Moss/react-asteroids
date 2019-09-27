@@ -21,6 +21,18 @@ const mapDispatchToProps = (dispatch) => {
                         x: getX(),
                         y: getY(),
                         speed: 1
+                    }, {
+                        numOfSides: getSides(),
+                        radius: getRadius(),
+                        x: getX(),
+                        y: getY(),
+                        speed: 1
+                    }, {
+                        numOfSides: getSides(),
+                        radius: getRadius(),
+                        x: getX(),
+                        y: getY(),
+                        speed: 1
                     }]
                 }
             })
