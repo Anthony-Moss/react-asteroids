@@ -4,7 +4,7 @@ const initialState = {
     y: 400,
     angle: 50,
     rotation: 65,
-    speed: 9.5,
+    speed: 4,
     keys: {
         left: 0,
         right: 0,
@@ -15,13 +15,15 @@ const initialState = {
 
 const playerReducer = (state=initialState, action) => {
     switch(action.type) {
-        case 'ASTEROIDS_MOVE':
-        console.log(state)
-        return {
-            ...state
-        }
+        case 'MOVE_SHIP':
+            console.log(action)
+            return {
+                ...state,
+                x: action.payload.x,
+                y: action.payload.y
+            }
     default:
-        return { ...state }
+        return state
     }
 }
 
