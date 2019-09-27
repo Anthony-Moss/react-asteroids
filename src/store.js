@@ -5,7 +5,7 @@ import gameReducer from './reducers/gameReducer'
 
 
 const rootReducer = combineReducers({
-    player: playerReducer,
+    ship: playerReducer,
     // asteroids: asteroidsReducer,
     game: gameReducer
 })
